@@ -1,0 +1,59 @@
+#!/bin/sh /etc/rc.common
+
+START=50
+USE_PROCD=1
+
+append_arg() {
+  local cfg="$1"
+  local var="$2"
+  local opt="$3"
+  local def="$4"
+  local val
+
+  config_get val "$cfg" "$var"
+  [ -n "$val" -o -n "$def" ] && procd_append_param command $opt "${val:-$def}"
+}
+
+start_instance() {
+  local cfg="$1"
+  local aux
+  local listen_addr
+  local listen_port
+
+  config_get_bool aux "$cfg" 'disabled' '0'
+  [ "$aux" = 1 ] && return 1
+
+  procd_open_instance
+
+  procd_set_param command /usr/bin/rtp2httpd
+
+  # Handle --listen argument
+  config_get listen_addr "$cfg" 'listen_address'
+  config_get listen_port "$cfg" 'listen_port'
+  if [ -n "$listen_addr" -a -n "$listen_port" ]; then
+    procd_append_param command "--listen" "${listen_addr}:${listen_port}"
+  fi
+
+  append_arg "$cfg" log_level "--log-level"
+  append_arg "$cfg" mcast_interface "--mcast-interface"
+  append_arg "$cfg" fcc_interface "--fcc-interface"
+  append_arg "$cfg" socket_buffer_size "--socket-buffer-size"
+  append_arg "$cfg" stream_channel_size "--stream-channel-size"
+
+  config_get_bool aux "$cfg" 'respawn' '0'
+  [ "$aux" = 1 ] && procd_set_param respawn
+
+  procd_set_param stdout 1
+  procd_set_param stderr 1
+
+  procd_close_instance
+}
+
+service_triggers() {
+  procd_add_reload_trigger "rtp2httpd"
+}
+
+start_service() {
+  config_load rtp2httpd
+  config_foreach start_instance rtp2httpd
+}

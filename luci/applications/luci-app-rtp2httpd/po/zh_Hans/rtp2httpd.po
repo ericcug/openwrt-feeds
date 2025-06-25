@@ -1,0 +1,72 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: zh_Hans\n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "rtp2httpd"
+msgstr "rtp2httpd"
+
+msgid "rtp2httpd converts multicast RTP/UDP media into http stream. Here you can configure the settings."
+msgstr "rtp2httpd 将组播 RTP/UDP 媒体转换为 HTTP 流。在这里进行配置。"
+
+msgid "rtp2httpd_Enabled"
+msgstr "启用"
+
+msgid "rtp2httpd_Respawn"
+msgstr "自动重启"
+
+msgid "rtp2httpd_Auto restart after crash"
+msgstr "程序崩溃后自动重启"
+
+msgid "rtp2httpd_Listen Address"
+msgstr "监听地址"
+
+msgid "rtp2httpd_Listen Port"
+msgstr "监听端口"
+
+msgid "rtp2httpd_Log Level"
+msgstr "日志级别"
+
+msgid "Error"
+msgstr "错误"
+
+msgid "Warn"
+msgstr "警告"
+
+msgid "Info"
+msgstr "信息"
+
+msgid "Debug"
+msgstr "调试"
+
+msgid "Trace"
+msgstr "追踪"
+
+msgid "rtp2httpd_Multicast Interface"
+msgstr "组播接口"
+
+msgid "rtp2httpd_Interface for multicast traffic"
+msgstr "用于组播流量的接口"
+
+msgid "rtp2httpd_FCC Interface"
+msgstr "FCC 接口"
+
+msgid "rtp2httpd_Interface for FCC requests"
+msgstr "用于 FCC 请求的接口"
+
+msgid "rtp2httpd_Socket Buffer Size"
+msgstr "套接字缓冲区大小"
+
+msgid "rtp2httpd_UDP socket receive buffer size in bytes"
+msgstr "UDP 套接字接收缓冲区大小（字节）"
+
+msgid "rtp2httpd_Stream Channel Size"
+msgstr "流通道大小"
+
+msgid "rtp2httpd_Capacity of the internal channel for each media stream"
+msgstr "每个媒体流的内部通道容量"
