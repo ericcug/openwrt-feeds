@@ -1,12 +1,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rtp2httpd
-PKG_VERSION:=1.0.0
+PKG_VERSION:=$(shell date +%Y-%m-%d)
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/ericcug/rtp2httpd.git
-PKG_SOURCE_VERSION:=v1.0.0
+PKG_SOURCE_VERSION:=main
 PKG_HASH:=skip
 
 PKG_MAINTAINER:=ericcug
@@ -20,7 +20,6 @@ define Package/rtp2httpd
 	CATEGORY:=Network
 	TITLE:=Convert multicast RTP/UDP IPTV streams into HTTP streams with FCC support
 	URL:=https://github.com/ericcug/rtp2httpd
-	DEPENDS:=+rust
 endef
 
 define Package/rtp2httpd/description
@@ -35,7 +34,7 @@ endef
 define Package/rtp2httpd/install
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/rtp2httpd.init $(1)/etc/init.d/rtp2httpd
-	$(INSTALL_DIR) $(1)/usr/bin/
+	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(Cargo/Target/Path)/rtp2httpd $(1)/usr/bin/
 endef
 
