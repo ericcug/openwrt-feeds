@@ -13,3 +13,4 @@ PKG_MAINTAINER:=ericcug
 include $(TOPDIR)/feeds/luci/luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature
+$(eval $(call BuildPackage,luci-app-rtp2httpd))

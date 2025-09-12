@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rtp2httpd
-PKG_VERSION:=$(shell date +%Y-%m-%d)
+PKG_VERSION:=1.0.0
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
@@ -12,8 +12,7 @@ PKG_HASH:=skip
 PKG_MAINTAINER:=ericcug
 
 include $(INCLUDE_DIR)/package.mk
-
-inherit rust
+include $(INCLUDE_DIR)/cargo.mk
 
 define Package/rtp2httpd
 	SECTION:=net
@@ -29,6 +28,10 @@ define Package/rtp2httpd/description
 	Program then join pre-configured multicast address and translate
 	incoming RTP data to HTTP stream.
 	This is a Rust version.
+endef
+
+define Build/Compile
+	$(call Cargo/Compile/Default)
 endef
 
 define Package/rtp2httpd/install

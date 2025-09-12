@@ -20,39 +20,34 @@ return view.extend({
             )
         );
 
-        s = m.section(form.TypedSection, "rtp2httpd");
+        s = m.section(form.TypedSection, "rtp2httpd", _("Global Settings"));
+        s.addremove = false;
         s.anonymous = true;
-        s.addremove = true;
 
-        o = s.option(form.Flag, "disabled", _("rtp2httpd_Enabled"));
+        o = s.option(form.Flag, "disabled", _("Enabled"));
+        o.rmempty = false;
         o.enabled = "0";
         o.disabled = "1";
-        o.default = o.enabled;
-        o.rmempty = false;
 
         o = s.option(
             form.Flag,
             "respawn",
-            _("rtp2httpd_Respawn"),
-            _("rtp2httpd_Auto restart after crash")
+            _("Respawn"),
+            _("Auto restart after crash")
         );
-        o.default = "1";
 
-        o = s.option(form.Value, "listen_address", _("rtp2httpd_Listen Address"));
+        o = s.option(form.Value, "listen_address", _("Listen Address"));
         o.datatype = "host";
-        o.default = "0.0.0.0";
 
-        o = s.option(form.Value, "listen_port", _("rtp2httpd_Listen Port"));
+        o = s.option(form.Value, "listen_port", _("Listen Port"));
         o.datatype = "port";
-        o.default = "8080";
 
-        o = s.option(form.ListValue, "log_level", _("rtp2httpd_Log Level"));
+        o = s.option(form.ListValue, "log_level", _("Log Level"));
         o.value("error", _("Error"));
         o.value("warn", _("Warn"));
         o.value("info", _("Info"));
         o.value("debug", _("Debug"));
         o.value("trace", _("Trace"));
-        o.default = "info";
 
         o = s.option(
             form.ListValue,
@@ -81,16 +76,14 @@ return view.extend({
             _("rtp2httpd_UDP socket receive buffer size in bytes")
         );
         o.datatype = "uinteger";
-        o.default = "2097152";
 
         o = s.option(
             form.Value,
             "stream_channel_size",
-            _("rtp2httpd_Stream Channel Size"),
-            _("rtp2httpd_Capacity of the internal channel for each media stream")
+            _("Stream Channel Size"),
+            _("Capacity of the internal channel for each media stream")
         );
         o.datatype = "uinteger";
-        o.default = "128";
 
         return m.render();
     },

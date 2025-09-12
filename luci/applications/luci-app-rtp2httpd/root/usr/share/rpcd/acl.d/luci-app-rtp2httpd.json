@@ -7,9 +7,21 @@
             ]
         },
         "write": {
-            "uci": [
-                "rtp2httpd"
-            ]
+            "uci": {
+                "rtp2httpd": {
+                    "*": [
+                        "disabled",
+                        "respawn",
+                        "listen_address",
+                        "listen_port",
+                        "log_level",
+                        "mcast_interface",
+                        "fcc_interface",
+                        "socket_buffer_size",
+                        "stream_channel_size"
+                    ]
+                }
+            }
         }
     }
 }
