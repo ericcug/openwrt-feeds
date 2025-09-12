@@ -1,5 +1,5 @@
 include $(TOPDIR)/rules.mk
-include $(INCLUDE_DIR)/rust.mk
+inherit rust
 
 PKG_NAME:=rtp2httpd
 PKG_VERSION:=1.0.0
@@ -19,7 +19,7 @@ define Package/rtp2httpd
 	CATEGORY:=Network
 	TITLE:=Convert multicast RTP/UDP IPTV streams into HTTP streams with FCC support
 	URL:=https://github.com/ericcug/rtp2httpd
-	DEPENDS:=+rust
+	DEPENDS:=+rust +CARGO_BUILD_DEPS
 endef
 
 define Package/rtp2httpd/description
@@ -29,10 +29,6 @@ define Package/rtp2httpd/description
 	Program then join pre-configured multicast address and translate
 	incoming RTP data to HTTP stream.
 	This is a Rust version.
-endef
-
-define Build/Compile
-	$(call Rust/Compile)
 endef
 
 define Package/rtp2httpd/install
