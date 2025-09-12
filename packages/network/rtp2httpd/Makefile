@@ -1,5 +1,4 @@
 include $(TOPDIR)/rules.mk
-inherit rust
 
 PKG_NAME:=rtp2httpd
 PKG_VERSION:=1.0.0
@@ -14,12 +13,14 @@ PKG_MAINTAINER:=ericcug
 
 include $(INCLUDE_DIR)/package.mk
 
+inherit rust
+
 define Package/rtp2httpd
 	SECTION:=net
 	CATEGORY:=Network
 	TITLE:=Convert multicast RTP/UDP IPTV streams into HTTP streams with FCC support
 	URL:=https://github.com/ericcug/rtp2httpd
-	DEPENDS:=+rust +CARGO_BUILD_DEPS
+	DEPENDS:=+rust
 endef
 
 define Package/rtp2httpd/description
