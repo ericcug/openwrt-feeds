@@ -8,7 +8,7 @@ PKG_VERSION := 0.7.1
 PKG_RELEASE := 1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://codeload.github.com/ericcug/mimic/tar.gz/v$(PKG_VERSION)?
+PKG_SOURCE_URL:=https://codeload.github.com/hack3ric/mimic/tar.gz/v$(PKG_VERSION)?
 PKG_HASH:=aa7a800d804c5ad7341d111359d4db3a3491354163c871cf4082f69dd72be0a4
 PKG_BUILD_DIR := $(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
