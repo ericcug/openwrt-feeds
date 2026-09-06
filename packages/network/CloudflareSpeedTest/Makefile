@@ -1,12 +1,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=CloudflareSpeedTest
-PKG_VERSION:=1.0.0
+PKG_VERSION:=2.3.5
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/ericcug/CloudflareSpeedTest.git
-PKG_SOURCE_VERSION:=8289354221ef4df516d4c9e9322786753dcf65f0
+PKG_SOURCE_VERSION:=v2.3.5
 PKG_MIRROR_HASH:=skip
 
 PKG_LICENSE:=GPL-3.0
