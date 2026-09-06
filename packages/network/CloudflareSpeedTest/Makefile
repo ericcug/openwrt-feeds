@@ -4,10 +4,9 @@ PKG_NAME:=CloudflareSpeedTest
 PKG_VERSION:=2.3.5
 PKG_RELEASE:=1
 
-PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=https://github.com/ericcug/CloudflareSpeedTest.git
-PKG_SOURCE_VERSION:=v2.3.5
-PKG_MIRROR_HASH:=skip
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE_URL:=https://codeload.github.com/ericcug/CloudflareSpeedTest/tar.gz/v$(PKG_VERSION)?
+PKG_HASH:=228efde72e9d507c999e2798125531dbc7a27c2acb57522887ce6001dc0a0d2b
 
 PKG_LICENSE:=GPL-3.0
 PKG_LICENSE_FILES:=LICENSE
@@ -38,7 +37,7 @@ endef
 define Package/CloudflareSpeedTest/install
 	$(call GoPackage/Package/Install/Bin,$(PKG_INSTALL_DIR))
 	$(INSTALL_DIR) $(1)/usr/bin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/CloudflareSpeedTest $(1)/usr/bin/
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/CloudflareSpeedTest $(1)/usr/bin/cfst
 endef
 
 $(eval $(call GoBinPackage,CloudflareSpeedTest))

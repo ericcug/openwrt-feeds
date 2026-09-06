@@ -4,10 +4,9 @@ PKG_NAME:=sing-box-faketcp
 PKG_VERSION:=1.14.0-faketcp2
 PKG_RELEASE:=1
 
-PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=https://github.com/ericcug/sing-box-faketcp.git
-PKG_SOURCE_VERSION:=v1.14.0-faketcp2
-PKG_MIRROR_HASH:=skip
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE_URL:=https://codeload.github.com/ericcug/sing-box-faketcp/tar.gz/v$(PKG_VERSION)?
+PKG_HASH:=d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed
 
 PKG_LICENSE:=GPL-3.0-or-later
 PKG_LICENSE_FILES:=LICENSE
@@ -41,7 +40,7 @@ endef
 define Package/sing-box-faketcp/install
 	$(call GoPackage/Package/Install/Bin,$(PKG_INSTALL_DIR))
 	$(INSTALL_DIR) $(1)/usr/bin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/sing-box $(1)/usr/bin/sing-box-faketcp
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/sing-box $(1)/usr/bin/
 endef
 
 $(eval $(call GoBinPackage,sing-box-faketcp))
