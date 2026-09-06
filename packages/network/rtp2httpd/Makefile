@@ -1,43 +1,56 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rtp2httpd
-PKG_VERSION:=1.0.0
+
+RELEASE_VERSION:=3.16.0
+
+PKG_VERSION:=$(shell echo "$(RELEASE_VERSION)" | sed 's/-\([a-z]*\)\.\([0-9]*\)/_\1\2/g')
 PKG_RELEASE:=1
+PKG_MAINTAINER:=Stackie Jia <jsq2627@gmail.com>
+PKG_LICENSE:=GPL-2.0-or-later
+PKG_LICENSE_FILES:=LICENSE
 
-PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=https://github.com/ericcug/rtp2httpd.git
-PKG_SOURCE_VERSION:=main
-PKG_HASH:=skip
+PKG_FIXUP:=cmake
 
-PKG_MAINTAINER:=ericcug
+export RELEASE_VERSION
 
-PKG_BUILD_DEPENDS:=rust/host
+PKG_SOURCE:=rtp2httpd-v$(RELEASE_VERSION).tar.gz
+PKG_SOURCE_URL:=https://codeload.github.com/stackia/rtp2httpd/tar.gz/v$(RELEASE_VERSION)?
+PKG_HASH:=83ff812c5b454cf70057bd2b714c891c8650260d4092d6b86629e451fda57d26
 
 include $(INCLUDE_DIR)/package.mk
-include $(TOPDIR)/feeds/packages/lang/rust/rust-package.mk
+include $(INCLUDE_DIR)/cmake.mk
+
 
 define Package/rtp2httpd
 	SECTION:=net
 	CATEGORY:=Network
-	TITLE:=Convert multicast RTP/UDP IPTV streams into HTTP streams with FCC support
-	DEPENDS:=$(RUST_ARCH_DEPENDS)
-	URL:=https://github.com/ericcug/rtp2httpd
+	TITLE:=Multicast RTP/RTSP to Unicast HTTP stream converter, optimized for China IPTV
+	URL:=https://github.com/stackia/rtp2httpd
 endef
 
 define Package/rtp2httpd/description
-	rtp2httpd converts multicast RTP/UDP media into http stream.
+	rtp2httpd converts RTP/UDP/RTSP media into http stream.
 	It acts as a tiny HTTP server. When client connect,
 	pre-configured multicast RTP service is choosen by URL.
 	Program then join pre-configured multicast address and translate
 	incoming RTP data to HTTP stream.
-	This is a Rust version.
+endef
+
+CMAKE_OPTIONS += \
+	-DENABLE_AGGRESSIVE_OPT=ON
+
+define Package/rtp2httpd/conffiles
+/etc/config/rtp2httpd
+/etc/rtp2httpd.conf
 endef
 
 define Package/rtp2httpd/install
-	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_DIR) $(1)/etc/init.d $(1)/etc/config $(1)/usr/bin
+	$(INSTALL_CONF) ./files/rtp2httpd.conf $(1)/etc/config/rtp2httpd
+	$(INSTALL_CONF) $(PKG_BUILD_DIR)/rtp2httpd.conf $(1)/etc
 	$(INSTALL_BIN) ./files/rtp2httpd.init $(1)/etc/init.d/rtp2httpd
-	$(INSTALL_DIR) $(1)/usr/bin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/bin/rtp2httpd $(1)/usr/bin/
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/rtp2httpd $(1)/usr/bin
 endef
 
 $(eval $(call BuildPackage,rtp2httpd))

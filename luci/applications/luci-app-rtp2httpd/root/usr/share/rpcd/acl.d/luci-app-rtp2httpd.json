@@ -1,27 +1,17 @@
 {
-    "luci-app-rtp2httpd": {
-        "description": "Grant UCI access for luci-app-rtp2httpd",
-        "read": {
-            "uci": [
-                "rtp2httpd"
-            ]
-        },
-        "write": {
-            "uci": {
-                "rtp2httpd": {
-                    "*": [
-                        "disabled",
-                        "respawn",
-                        "listen_address",
-                        "listen_port",
-                        "log_level",
-                        "mcast_interface",
-                        "fcc_interface",
-                        "socket_buffer_size",
-                        "stream_channel_size"
-                    ]
-                }
-            }
-        }
+  "luci-app-rtp2httpd": {
+    "description": "Grant UCI access for luci-app-rtp2httpd",
+    "read": {
+      "uci": ["rtp2httpd"],
+      "file": {
+        "/etc/rtp2httpd.conf": ["read"]
+      }
+    },
+    "write": {
+      "uci": ["rtp2httpd"],
+      "file": {
+        "/etc/rtp2httpd.conf": ["write"]
+      }
     }
+  }
 }
