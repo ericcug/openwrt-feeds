@@ -22,7 +22,7 @@ define Package/mimic
 	CATEGORY := Network
 	TITLE := eBPF UDP -> TCP Obfuscator
 	URL := https://github.com/hack3ric/mimic
-	DEPENDS := +libbpf +libffi +kmod-sched-core +kmod-sched-bpf +kmod-mimic +kmod-sched-act-bpf
+	DEPENDS := +libbpf +libffi +kmod-sched-core +kmod-sched-bpf +kmod-mimic
 endef
 
 define Package/mimic/description
