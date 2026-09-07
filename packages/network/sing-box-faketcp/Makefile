@@ -4,9 +4,9 @@ PKG_NAME:=sing-box-faketcp
 PKG_VERSION:=1.14.0
 PKG_RELEASE:=1
 
-PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=git@github.com:ericcug/sing-box-faketcp.git
-PKG_SOURCE_VERSION:=v1.14.0-faketcp2
+GITHUB_TOKEN ?=
+PKG_SOURCE_URL:=https://$(if $(GITHUB_TOKEN),$(GITHUB_TOKEN)@)github.com/ericcug/sing-box-faketcp/archive/$(PKG_SOURCE_VERSION)
+PKG_SOURCE_VERSION:=v1.14.0-faketcp
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_MIRROR_HASH:=skip
 
