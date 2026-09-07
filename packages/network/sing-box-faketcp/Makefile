@@ -20,6 +20,7 @@ PKG_USE_MIPS16:=0
 
 GO_PKG:=github.com/sagernet/sing-box
 GO_PKG_BUILD_PKG:=$(GO_PKG)/cmd/sing-box
+GO_PKG_TAGS:=with_gvisor with_quic with_dhcp with_wireguard with_utls with_acme with_tailscale with_naive_outbound with_openconnect badlinkname tfogo_checklinkname0 with_musl
 GO_PKG_LDFLAGS_X:= \
 	$(GO_PKG)/constant.Version=$(patsubst v%,%,$(PKG_SOURCE_VERSION))
 
