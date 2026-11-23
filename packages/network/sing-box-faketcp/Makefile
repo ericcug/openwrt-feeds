@@ -4,7 +4,7 @@ PKG_NAME:=sing-box-faketcp
 PKG_VERSION:=1.14.0
 PKG_RELEASE:=1
 
-PKG_SOURCE_VERSION:=v1.14.0-faketcp
+PKG_SOURCE_VERSION:=v1.14.4-faketcp
 PKG_SOURCE:=$(PKG_NAME)-$(patsubst v%,%,$(PKG_SOURCE_VERSION)).tar.gz
 PKG_HASH:=skip
 
